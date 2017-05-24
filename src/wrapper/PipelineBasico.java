@@ -1,4 +1,4 @@
-package parser;
+package wrapper;
 
 import java.util.List;
 import java.util.Properties;
