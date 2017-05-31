@@ -1,5 +1,10 @@
 package wrapper;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Parser {
@@ -10,12 +15,13 @@ public class Parser {
 	private String assuntos;
 	private String comentarios;
 	private String journalRef;
-	
+
 	public Parser(List<String> linhas) {
 		this.linhas = linhas;
 	}
 	
 	public void parse(){
+		
 		this.link = linhas.get(0);
 		this.titulo = linhas.get(1);
 		this.autores = linhas.get(2);
@@ -59,6 +65,7 @@ public class Parser {
 
 		String resultado;
 		resultado = 
+				
 		"Authors: "	+ autores		+ "\n" +
 		"Title: "	+ titulo		+ "\n" +
 		"Subjects:"	+ assuntos		+ "\n" +
