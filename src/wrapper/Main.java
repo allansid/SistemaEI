@@ -9,34 +9,15 @@ import java.util.List;
 
 public class Main {
 	
-	private static String doc;
-
-	public static List<String> carregarArquivo(String path) {
-		List<String> linhas = new ArrayList<>();
-		BufferedReader br;
-		try {
-			br = new BufferedReader(new FileReader(path));
-			while(br.ready()){
-				linhas.add(br.readLine());
-			}
-			br.close();
-			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		return linhas;
-	}
+	
 
 	public static void main(String[] args) {
-		for(int i=1, n=1; i <= 20; i++, n++){
-			doc = "C:\\Users\\Allan\\Downloads\\doc"+n+".txt";
-			List<String> linhas = carregarArquivo(doc);
-			Parser parser = new Parser(linhas);
-			parser.parse();
-			System.out.println(parser.toString() + "\n");
+		CoreNlp core=new CoreNlp();
+		try {
+			core.getRelacoes("A:\\UFPE\\Mineração da Web\\Projeto2\\documentos\\doc4.txt");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 	}
