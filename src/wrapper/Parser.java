@@ -77,7 +77,7 @@ public class Parser {
 		"Title: "		+ titulo		+ "\n" +
 		"Subjects:"		+ assuntos		+ "\n" +
 		"Comments:"		+ comentarios 	+ "\n" +
-		"Link: arXiv:"	+ link;
+		"Link:"			+ link;
 		return resultado;
 	}
 }

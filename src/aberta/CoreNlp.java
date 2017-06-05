@@ -1,4 +1,4 @@
-package wrapper;
+package aberta;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -17,6 +17,7 @@ import edu.stanford.nlp.naturalli.NaturalLogicAnnotations;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.util.CoreMap;
+import wrapper.Parser;
 
 /**
  * A demo illustrating how to call the OpenIE system programmatically.
