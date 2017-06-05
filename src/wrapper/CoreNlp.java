@@ -1,12 +1,5 @@
 package wrapper;
 
-import edu.stanford.nlp.ie.util.RelationTriple;
-import edu.stanford.nlp.ling.CoreAnnotations;
-import edu.stanford.nlp.pipeline.Annotation;
-import edu.stanford.nlp.pipeline.StanfordCoreNLP;
-import edu.stanford.nlp.naturalli.NaturalLogicAnnotations;
-import edu.stanford.nlp.util.CoreMap;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,15 +11,22 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
 
-import org.apache.commons.io.IOUtils;
+import edu.stanford.nlp.ie.util.RelationTriple;
+import edu.stanford.nlp.ling.CoreAnnotations;
+import edu.stanford.nlp.naturalli.NaturalLogicAnnotations;
+import edu.stanford.nlp.pipeline.Annotation;
+import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+import edu.stanford.nlp.util.CoreMap;
 
 /**
  * A demo illustrating how to call the OpenIE system programmatically.
  */
 public class CoreNlp {
 	private static String doc;
+	private static List<String> linhas = new ArrayList<>();
+	
 	public static List<String> carregarArquivo(String path) {
-		List<String> linhas = new ArrayList<>();
+		//List<String> linhas = new ArrayList<>();
 		BufferedReader br;
 		try {
 			br = new BufferedReader(new FileReader(path));
@@ -47,7 +47,7 @@ public class CoreNlp {
 	public void extrai(String doc){
 	
 
-			List<String> linhas = carregarArquivo(doc);
+			this.linhas = carregarArquivo(doc);
 			Parser parser = new Parser(linhas);
 			parser.parse();
 			System.out.println(parser.toString());
@@ -56,8 +56,11 @@ public class CoreNlp {
 		
   public void getRelacoes(String documentos) throws Exception {
 	FileInputStream fisTargetFile = new FileInputStream(new File(documentos));
-	String targetFileStr = IOUtils.toString(fisTargetFile, "UTF-8").substring(')');  	
-	  
+	
+	extrai(documentos); 
+	
+	//String targetFileStr = IOUtils.toString(fisTargetFile, "UTF-8").substring(')');  	
+	String targetFileStr = linhas.get(4);
     // Create the Stanford CoreNLP pipeline
     Properties props = new Properties();
     props.setProperty("annotators", "tokenize,ssplit,pos,lemma,depparse,natlog,openie");
@@ -67,7 +70,7 @@ public class CoreNlp {
     Annotation doc = new Annotation(targetFileStr);
     pipeline.annotate(doc);
     int cont=1;
-    extrai(documentos); 
+    
     // Loop over sentences in the document
     for (CoreMap sentence : doc.get(CoreAnnotations.SentencesAnnotation.class)) {
       // Get the OpenIE triples for the sentence
