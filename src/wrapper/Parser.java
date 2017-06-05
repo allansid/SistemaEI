@@ -16,12 +16,19 @@ public class Parser {
 	}
 	
 	public void parse(){
-		this.link = linhas.get(0);
+//		this.link = linhas.get(0);
+		getLink();
 		this.titulo = linhas.get(1);
 		this.autores = linhas.get(2);
 		loadTags();
 	}
 	
+	public void getLink(){
+		String linha = linhas.get(0);
+		if(linha.startsWith("[")){
+			link  = linha.split("arXiv:")[1];
+		}
+	}
 	public void loadTags(){
 		String linha = linhas.get(3);
 		if(linha.startsWith("Comments:")){
@@ -59,11 +66,11 @@ public class Parser {
 
 		String resultado;
 		resultado = 
-		"Authors: "	+ autores		+ "\n" +
-		"Title: "	+ titulo		+ "\n" +
-		"Subjects:"	+ assuntos		+ "\n" +
-		"Comments:"	+ comentarios 	+ "\n" +
-		"Link:"		+ link;
+		"Authors: "		+ autores		+ "\n" +
+		"Title: "		+ titulo		+ "\n" +
+		"Subjects:"		+ assuntos		+ "\n" +
+		"Comments:"		+ comentarios 	+ "\n" +
+		"Link: arXiv:"	+ link;
 		
 		return resultado;
 	}
