@@ -6,7 +6,7 @@ public class Main {
 		CoreNlp core=new CoreNlp();
 		
 		try {
-			core.getRelacoes("C:\\Users\\Allan\\Downloads\\doc1.txt");
+			core.getRelacoes("C:\\Users\\ovcg\\Downloads\\doc20.txt");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

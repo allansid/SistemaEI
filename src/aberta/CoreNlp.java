@@ -59,9 +59,13 @@ public class CoreNlp {
 	FileInputStream fisTargetFile = new FileInputStream(new File(documentos));
 	
 	extrai(documentos); 
-	
-	//String targetFileStr = IOUtils.toString(fisTargetFile, "UTF-8").substring(')');  	
-	String targetFileStr = linhas.get(4);
+	String targetFileStr = "";
+	if(linhas.get(5)!=null){
+	targetFileStr = linhas.get(5);
+	}
+	else{
+		targetFileStr = linhas.get(4);
+	}
     // Create the Stanford CoreNLP pipeline
     Properties props = new Properties();
     props.setProperty("annotators", "tokenize,ssplit,pos,lemma,depparse,natlog,openie");
